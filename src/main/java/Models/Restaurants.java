@@ -48,7 +48,7 @@ public class Restaurants implements Serializable {
     private String username;
     @Size(max = 50)
     @Column(name = "RESTAURANT_NAME")
-    private String restaurantName;
+    private String restaurantname;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 50)
     @Column(name = "EMAIL")
@@ -108,12 +108,12 @@ public class Restaurants implements Serializable {
     }
 
 
-    public String getRestaurantName() {
-        return restaurantName;
+    public String getRestaurantname() {
+        return restaurantname;
     }
 
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+    public void setRestaurantname(String restaurantName) {
+        this.restaurantname = restaurantName;
     }
 
 
@@ -158,18 +158,17 @@ public class Restaurants implements Serializable {
         return hash;
     }
 
+    /**
+     *
+     * @param object
+     * @return
+     */
+    
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Restaurants)) {
-            return false;
-        }
-        Restaurants other = (Restaurants) object;
-        if ((this.restaurantId == null && other.restaurantId != null) || (this.restaurantId != null && !this.restaurantId.equals(other.restaurantId))) {
-            return false;
-        }
-        return true;
+    public boolean equals(Object obj) {
+        return ((Restaurants) obj).getRestaurantname().equals(this.restaurantname);
     }
+
 
     @Override
     public String toString() {
@@ -184,13 +183,6 @@ public class Restaurants implements Serializable {
         this.username = username;
     }
 
-//    public String getRestaurantName() {
-//        return restaurantName;
-//    }
-//
-//    public void setRestaurantName(String restaurantName) {
-//        this.restaurantName = restaurantName;
-//    }
 
     public String getEmail() {
         return email;
@@ -200,13 +192,6 @@ public class Restaurants implements Serializable {
         this.email = email;
     }
 
-//    public String getRestaurantOwner() {
-//        return restaurantOwner;
-//    }
-//
-//    public void setRestaurantOwner(String restaurantOwner) {
-//        this.restaurantOwner = restaurantOwner;
-//    }
 
     public String getAddress() {
         return address;
@@ -216,13 +201,6 @@ public class Restaurants implements Serializable {
         this.address = address;
     }
 
-//    public String getOpeningHours() {
-//        return openingHours;
-//    }
-//
-//    public void setOpeningHours(String openingHours) {
-//        this.openingHours = openingHours;
-//    }
 
     public String getPrice() {
         return price;
