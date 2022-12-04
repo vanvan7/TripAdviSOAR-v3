@@ -5,7 +5,6 @@
  */
 package Beans;
 
-import static Beans.RestaurantSenzu.findByRestaurantName;
 import Exceptions.DoesNotExistException;
 import Models.Restaurants;
 import java.util.ArrayList;
@@ -43,15 +42,6 @@ public class RestaurantSenzu implements Serializable {
     private ArrayList<Integer> ratinglist;
     
 
-    public static Restaurants findByRestaurantName(String restaurantname) throws DoesNotExistException {
-        for (Restaurants restaurant : MockDatabase.getInstance().getRestaurant()) {
-            if (restaurant.getRestaurantname().equals(restaurantname)) {
-                return restaurant;
-            }    
-        }
-        throw new DoesNotExistException("The restaurant " + restaurantname + " does not exist.");
-        
-     }
     
     protected Restaurants findByRestaurantName() throws DoesNotExistException {
         Query query = em.createNamedQuery("Users.findByRestaurantName", Restaurants.class);
@@ -62,8 +52,9 @@ public class RestaurantSenzu implements Serializable {
         throw new DoesNotExistException("The user " + restaurantname + " does not exist.");
     }
     
-    public ArrayList<Restaurant> getRestaurant() {
-        return MockDatabase.getInstance().getRestaurant();
+    public List<Restaurants> getRestaurant() {
+        List<Restaurants> restaurant = null;
+        return restaurant;
        
     }
     
