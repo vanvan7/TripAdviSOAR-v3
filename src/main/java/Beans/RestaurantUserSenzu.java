@@ -6,15 +6,19 @@
 package Beans;
 
 import Exceptions.DoesNotExistException;
-import Database.MockDatabase;
 import Exceptions.AlreadyExistsException;
-import Models.Restaurant;
-import Models.User;
+import Models.Restaurants;
+import Models.Users;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -24,6 +28,9 @@ import java.io.Serializable;
 @Named(value = "restaurantUserSenzu")
 @SessionScoped
 public class RestaurantUserSenzu implements Serializable {
+    
+    @PersistenceContext(unitName = "soar_PU")
+    private EntityManager em;
 
     private String username = "";
     private String password = "";
@@ -40,12 +47,16 @@ public class RestaurantUserSenzu implements Serializable {
     private ArrayList<String> menu;
     private ArrayList<String> specialdiet;
     //-----------------------------------------------------added
-
+    @Transactional
     public String createARestaurantUser() {
         try {
             if (!emailExists() && !usernameExists()) {
-                MockDatabase.getInstance().addAUser(new User(username, restaurantname, email, password));
-                MockDatabase.getInstance().addARestaurant(new Restaurant(username, password, email, restaurantname, owner, address, datetime, price, cookingtype, contact, menu, specialdiet));
+                Users newUser = new Users();
+                newUser.setUsername(username);
+                newUser.setPassword(password.hashCode());
+                newUser.setEmail(email);
+                newUser.setRestaurantName(restaurantname);
+                em.persist(newUser);
             } //add to mock databese if User created
             return "/MainPage/LoginPageRestaurant.xhtml?faces-redirect=true";
         } catch (AlreadyExistsException | DoesNotExistException ex) {
@@ -69,31 +80,16 @@ public class RestaurantUserSenzu implements Serializable {
         return "/MainPage/LoginPageRestaurant.xhtml?faces-redirect=true";
     }
 
-    protected static User findByUsername(String username) throws DoesNotExistException {
-        for (User user : MockDatabase.getInstance().getUsers()) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
-        }
-        throw new DoesNotExistException("The user " + username + " does not exist.");
+    private boolean emailExists() throws AlreadyExistsException {
+        Query query = em.createNamedQuery("Users.findByEmail");
+        List<Users> users = query.setParameter("email", email).getResultList();
+        return users.size() > 0;
     }
 
-    protected boolean emailExists() throws AlreadyExistsException {
-        for (User user : MockDatabase.getInstance().getUsers()) {
-            if (user.getEmail().equals(email)) {
-                throw new AlreadyExistsException("The email " + email + " already in use.");
-            }
-        }
-        return false;
-    }
-
-    protected boolean usernameExists() throws DoesNotExistException {
-        for (User user : MockDatabase.getInstance().getUsers()) {
-            if (user.getUsername().equals(username)) {
-                return true;
-            }
-        }
-        return false;
+    private boolean usernameExists() throws DoesNotExistException {
+        Query query = em.createNamedQuery("Users.findByUsername");
+        List<Users> users = query.setParameter("username", username).getResultList();
+        return users.size() > 0;
     }
 
     //GET

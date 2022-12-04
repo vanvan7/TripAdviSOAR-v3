@@ -7,13 +7,17 @@ package Beans;
 
 import static Beans.RestaurantSenzu.findByRestaurantName;
 import Exceptions.DoesNotExistException;
-import Database.MockDatabase;
-import Models.Restaurant;
+import Models.Restaurants;
 import java.util.ArrayList;
-import Exceptions.NoRestaurantCorrespondingException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
 
 /**
  *
@@ -22,7 +26,10 @@ import java.io.Serializable;
 @Named(value = "restaurantSenzu")
 @SessionScoped
 public class RestaurantSenzu implements Serializable {
-
+    
+    @PersistenceContext(unitName = "soar_PU")
+    private EntityManager em;
+    
     private String restaurantname = "";
     private String owner = "";
     private String address = "";
@@ -36,8 +43,8 @@ public class RestaurantSenzu implements Serializable {
     private ArrayList<Integer> ratinglist;
     
 
-    public static Restaurant findByRestaurantName(String restaurantname) throws DoesNotExistException {
-        for (Restaurant restaurant : MockDatabase.getInstance().getRestaurant()) {
+    public static Restaurants findByRestaurantName(String restaurantname) throws DoesNotExistException {
+        for (Restaurants restaurant : MockDatabase.getInstance().getRestaurant()) {
             if (restaurant.getRestaurantname().equals(restaurantname)) {
                 return restaurant;
             }    
@@ -46,6 +53,14 @@ public class RestaurantSenzu implements Serializable {
         
      }
     
+    protected Restaurants findByRestaurantName() throws DoesNotExistException {
+        Query query = em.createNamedQuery("Users.findByRestaurantName", Restaurants.class);
+        List<Restaurants> users = query.setParameter("restaurantname", restaurantname).getResultList();
+        if (users.size() > 0) {
+            return users.get(0);
+        }
+        throw new DoesNotExistException("The user " + restaurantname + " does not exist.");
+    }
     
     public ArrayList<Restaurant> getRestaurant() {
         return MockDatabase.getInstance().getRestaurant();
