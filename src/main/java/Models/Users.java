@@ -20,9 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-
-/**
- *
+ /*
  * @author srivathshanparamalingam
  */
 @Entity
@@ -74,6 +72,10 @@ public class Users implements Serializable {
 
     public Users(Integer userId) {
         this.userId = userId;
+    }
+    
+    public boolean isPasswordCorrect(String password) {
+        return password.hashCode() == this.password;
     }
 
     public Integer getUserId() {
