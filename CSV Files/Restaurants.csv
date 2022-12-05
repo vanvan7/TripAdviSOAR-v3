@@ -1,0 +1,6 @@
+ID;USERNAME;RESTAURANT_NAME;EMAIL;RESTAURANT_OWNER;ADDRESS;OPENING_HOURS;PRICE;COOKINGTYPE;CONTACT;MENU;SPECIALDIET;PASSWORD;RATING
+1;waffle1;The Real Waffle;waffle@gmail.com;alla;High Avenue 1;17:00-21:30;$$$;Traditional;794731452;The Authenthic, Cheesy Lover, Salted Butter Caramel;Gluten-free,Lactose free;1509442;NULL
+2;pizza1;Pomodoro;pizza@gmail.com;lanonna;Highway Road 10;17:00-21:31;$;French;794731452;House pizza, Melanzane, Tiramisu;None;1509442;NULL
+3;meat1;Hunter Place;meat@gmail.com;mike;Beautiful Road 35;17:00-21:32;$$;Italian;794731452;Steak 300grs, The raw Road, Creme Brulee;Gluten-free,Lactose free;1509442;NULL
+4;japanese1;Oishii Udon;japanese@gmail.com;yoshida;Michel Road 50;17:00-21:33;$;Japanese;794731452;Kitsune Udon, Shouyu Udon, Kare Udon;Gluten-free,Lactose free;1509442;NULL
+5;korean1;The spicy House;korean@gmail.com;seaon;Victoria Road 14;17:00-21:34;$$$;Korean;794731452;Bibimbap, Kimchi, Jjigae;Gluten-free,Lactose free;1509442;NULL
