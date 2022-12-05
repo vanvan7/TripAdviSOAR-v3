@@ -26,10 +26,10 @@ import javax.transaction.Transactional;
 @SessionScoped
 public class RestaurantSenzu implements Serializable {
     
-    @PersistenceContext(unitName = "soar_PU")
+    @PersistenceContext(unitName = "t_soar_PU")
     private EntityManager em;
     
-    private String restaurantname = "";
+    private String restaurantName = "";
     private String owner = "";
     private String address = "";
     private String datetime = "";
@@ -45,11 +45,11 @@ public class RestaurantSenzu implements Serializable {
     
     protected Restaurants findByRestaurantName() throws DoesNotExistException {
         Query query = em.createNamedQuery("Users.findByRestaurantName", Restaurants.class);
-        List<Restaurants> users = query.setParameter("restaurantname", restaurantname).getResultList();
+        List<Restaurants> users = query.setParameter("restaurantName", restaurantName).getResultList();
         if (users.size() > 0) {
             return users.get(0);
         }
-        throw new DoesNotExistException("The user " + restaurantname + " does not exist.");
+        throw new DoesNotExistException("The user " + restaurantName + " does not exist.");
     }
     
     public List<Restaurants> getRestaurant() {
@@ -58,13 +58,13 @@ public class RestaurantSenzu implements Serializable {
        
     }
     
-    public String getRestaurantname() {
-        return restaurantname;
+    public String getRestaurantName() {
+        return restaurantName;
         
     }
 
-    public void setRestaurantname(String restaurantname) {
-        this.restaurantname = restaurantname;
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
     
     public void setRatings(Integer ratings)  {

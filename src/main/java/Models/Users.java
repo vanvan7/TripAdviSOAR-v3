@@ -20,6 +20,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
  /*
  * @author srivathshanparamalingam
  */
@@ -41,13 +43,13 @@ public class Users implements Serializable {
     private String username;
     @Size(max = 50)
     @Column(name = "FIRST_NAME")
-    private String firstname;
+    private String firstName;
     @Size(max = 50)
     @Column(name = "RESTAURANT_NAME")
-    private String restaurantname;
+    private String restaurantName;
     @Size(max = 50)
     @Column(name = "LAST_NAME")
-    private String lastname;
+    private String lastName;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 50)
     @Column(name = "EMAIL")
@@ -88,27 +90,27 @@ public class Users implements Serializable {
 
 
     public String getFirstName() {
-        return firstname;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstname = firstName;
+        this.firstName = firstName;
     }
 
     public String getRestaurantName() {
-        return restaurantname;
+        return restaurantName;
     }
 
     public void setRestaurantName(String restaurantName) {
-        this.restaurantname = restaurantName;
+        this.restaurantName = restaurantName;
     }
 
     public String getLastName() {
-        return lastname;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastname = lastName;
+        this.lastName = lastName;
     }
 
     public Integer getPassword() {
@@ -158,15 +160,15 @@ public class Users implements Serializable {
    @Override
     public String toString() {
         String S="";
-        if (restaurantname==null){
+        if (restaurantName==null){
             S=  "Username: " + this.username
-                    + "\nFirst name: " + this.firstname
-                    + "\nLast name: " + this.lastname
+                    + "\nFirst name: " + this.firstName
+                    + "\nLast name: " + this.lastName
                     + "\nEmail: " + this.email;  
             
           } else{
             S= "Username: " + this.username
-                    + "\nRestaurant Name: " + this.restaurantname
+                    + "\nRestaurant Name: " + this.restaurantName
                     + "\nEmail: " + this.email;   
             
             

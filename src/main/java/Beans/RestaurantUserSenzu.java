@@ -29,13 +29,13 @@ import javax.transaction.Transactional;
 @SessionScoped
 public class RestaurantUserSenzu implements Serializable {
     
-    @PersistenceContext(unitName = "soar_PU")
+    @PersistenceContext(unitName = "t_soar_PU")
     private EntityManager em;
 
     private String username = "";
     private String password = "";
     private String email = "";
-    private String restaurantname = "";
+    private String restaurantName = "";
     private String owner = "";
     private String address = "";
     private String datetime = "";
@@ -55,7 +55,7 @@ public class RestaurantUserSenzu implements Serializable {
                 newUser.setUsername(username);
                 newUser.setPassword(password.hashCode());
                 newUser.setEmail(email);
-                newUser.setRestaurantName(restaurantname);
+                newUser.setRestaurantName(restaurantName);
                 em.persist(newUser);
             } //add to mock databese if User created
             return "/MainPage/LoginPageRestaurant.xhtml?faces-redirect=true";
@@ -66,7 +66,7 @@ public class RestaurantUserSenzu implements Serializable {
         this.username = "";
         this.password = "";
         this.email = "";
-        this.restaurantname = "";
+        this.restaurantName = "";
         this.owner = "";
         this.address = "";
         this.datetime = "";
@@ -97,8 +97,8 @@ public class RestaurantUserSenzu implements Serializable {
         return email;
     }
 
-    public String getRestaurantname() {
-        return restaurantname;
+    public String getRestaurantName() {
+        return restaurantName;
     }
 
     public String getPassword() {
@@ -159,8 +159,8 @@ public class RestaurantUserSenzu implements Serializable {
         this.email = email;
     }
 
-    public void setRestaurantname(String restaurantname) {
-        this.restaurantname = restaurantname;
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 
     public void setPassword(String password) {

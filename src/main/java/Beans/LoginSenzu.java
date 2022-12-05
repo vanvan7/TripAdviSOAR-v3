@@ -29,7 +29,7 @@ public class LoginSenzu implements Serializable {
 
     private String username = "";
     private String password = "";
-    private String restaurantname = "";
+    private String restaurantName = "";
     private Users currentUser;
     private Restaurants currentRestaurant;
 
@@ -69,11 +69,11 @@ public class LoginSenzu implements Serializable {
     }
         protected Restaurants findByRestaurantName() throws DoesNotExistException {
         Query query = em.createNamedQuery("Restaurants.findByRestaurantName", Restaurants.class);
-        List<Restaurants> users = query.setParameter("restaurantname", restaurantname).getResultList();
+        List<Restaurants> users = query.setParameter("restaurantname", restaurantName).getResultList();
         if (users.size() > 0) {
             return users.get(0);
         }
-        throw new DoesNotExistException("The user " + restaurantname + " does not exist.");
+        throw new DoesNotExistException("The user " + restaurantName + " does not exist.");
     }
     
     public String RestaurantLogIn() {
@@ -113,8 +113,8 @@ public class LoginSenzu implements Serializable {
         return username;
     }
     
-     public String getRestaurantname() {
-        return restaurantname;
+     public String getRestaurantName() {
+        return restaurantName;
     }
     public void setCurrentUser(Users currentUser) {
         this.currentUser = currentUser;
@@ -132,8 +132,8 @@ public class LoginSenzu implements Serializable {
         this.username = username;
     }
     
-    public void setRestaurantname(String restaurantname){
-        this.restaurantname = restaurantname;
+    public void setRestaurantName(String restaurantName){
+        this.restaurantName = restaurantName;
     }
     
 }

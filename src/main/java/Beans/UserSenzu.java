@@ -30,8 +30,8 @@ public class UserSenzu implements Serializable {
     private EntityManager em;
 
     private String username = "";
-    private String firstname = "";
-    private String lastname = "";
+    private String firstName = "";
+    private String lastName = "";
     private String email = "";
     private String password = "";
     
@@ -41,8 +41,8 @@ public class UserSenzu implements Serializable {
             if (!emailExists() && !usernameExists()) {
                 Users newUser = new Users();
                 newUser.setUsername(username);
-                newUser.setFirstName(firstname);
-                newUser.setLastName(lastname);
+                newUser.setFirstName(firstName);
+                newUser.setLastName(lastName);
                 newUser.setEmail(email);
                 newUser.setPassword(password.hashCode());
                 em.persist(newUser);
@@ -55,8 +55,8 @@ public class UserSenzu implements Serializable {
         // empty values
         this.email = "";
         this.username = "";
-        this.firstname = "";
-        this.lastname = "";
+        this.firstName = "";
+        this.lastName = "";
         this.password = "";
        return "/MainPage/LoginPage.xhtml?faces-redirect=true";
     }    
@@ -77,12 +77,12 @@ public class UserSenzu implements Serializable {
         return email;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getPassword() {
@@ -97,12 +97,12 @@ public class UserSenzu implements Serializable {
         this.email = email;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setPassword(String password) {

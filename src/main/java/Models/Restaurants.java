@@ -18,6 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -48,7 +50,7 @@ public class Restaurants implements Serializable {
     private String username;
     @Size(max = 50)
     @Column(name = "RESTAURANT_NAME")
-    private String restaurantname;
+    private String restaurantName;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 50)
     @Column(name = "EMAIL")
@@ -108,12 +110,12 @@ public class Restaurants implements Serializable {
     }
 
 
-    public String getRestaurantname() {
-        return restaurantname;
+    public String getRestaurantName() {
+        return restaurantName;
     }
 
-    public void setRestaurantname(String restaurantName) {
-        this.restaurantname = restaurantName;
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 
 
@@ -166,7 +168,7 @@ public class Restaurants implements Serializable {
     
     @Override
     public boolean equals(Object obj) {
-        return ((Restaurants) obj).getRestaurantname().equals(this.restaurantname);
+        return ((Restaurants) obj).getRestaurantName().equals(this.restaurantName);
     }
 
 
