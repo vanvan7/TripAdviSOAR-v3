@@ -69,9 +69,9 @@ public class LoginSenzu implements Serializable {
     }
         protected Restaurants findByRestaurantName() throws DoesNotExistException {
         Query query = em.createNamedQuery("Restaurants.findByRestaurantName", Restaurants.class);
-        List<Restaurants> users = query.setParameter("restaurantname", restaurantName).getResultList();
-        if (users.size() > 0) {
-            return users.get(0);
+        List<Restaurants> restaurants = query.setParameter("restaurantName", restaurantName).getResultList();
+        if (restaurants.size() > 0) {
+            return restaurants.get(0);
         }
         throw new DoesNotExistException("The user " + restaurantName + " does not exist.");
     }
@@ -81,6 +81,7 @@ public class LoginSenzu implements Serializable {
             Users user = findByUsername();
             if (user != null && user.isPasswordCorrect(password)) {
                 currentUser = user;
+                restaurantName = currentUser.getRestaurantName();
                 currentRestaurant = findByRestaurantName();
                 return "/RestaurantPage/RestaurantMainPage.xhtml?faces-redirect=true";
             }          
