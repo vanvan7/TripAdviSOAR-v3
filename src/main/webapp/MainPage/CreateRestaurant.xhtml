@@ -82,11 +82,11 @@
                     <h:outputText value="Password"/>
                     <h:inputSecret value="#{restaurantUserSenzu.password}" />
                     <h:outputText value="Owner's name"/>
-                    <h:inputText value="#{restaurantUserSenzu.owner}" />
+                    <h:inputText value="#{restaurantUserSenzu.restaurantOwner}" />
                     <h:outputText value="Restaurant's address"/>
                     <h:inputText value="#{restaurantUserSenzu.address}" />
                     <h:outputText value="Restaurant's opening hours (in format hh:mm-hh:mm)"/>
-                    <h:inputText value="#{restaurantUserSenzu.datetime}" />
+                    <h:inputText value="#{restaurantUserSenzu.openingHours}" />
                     <h:outputText value="Restaurant's prices(cheap : $, average : $$, expensive : $$$)"/>
                     <h:inputText value="#{restaurantUserSenzu.price}" />
                     <h:outputText value="Cooking type"/>
@@ -94,7 +94,7 @@
                     <h:outputText value="Phone number"/>
                     <h:inputText value="#{restaurantUserSenzu.contact}" />
                     <h:outputText value="Add your menu"/>
-                    <h:inputText value="#{restaurantUserSenzu.dish}" />
+                    <h:inputText value="#{restaurantUserSenzu.menu}" />
                     <h:outputText value="Select a special diet: "/>
                     <p:selectManyButton value="#{restaurantUserSenzu.specialdiet}">  
                         <f:selectItem itemLabel="Lactosefree" itemValue="Lactose Free" />  

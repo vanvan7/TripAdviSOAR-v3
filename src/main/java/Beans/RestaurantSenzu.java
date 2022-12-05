@@ -30,16 +30,16 @@ public class RestaurantSenzu implements Serializable {
     private EntityManager em;
     
     private String restaurantName = "";
-    private String owner = "";
+    private String restaurantOwner = "";
     private String address = "";
-    private String datetime = "";
+    private String openingHours = "";
     private String price = "";
     private String cookingtype = "";
     private String contact = "";
     private String menu = "";
-    private String specialdiet = "";
-    private Integer ratings;
-    private ArrayList<Integer> ratinglist;
+    private String rating;
+    private ArrayList<String> specialdiet;
+    //private ArrayList<Integer> ratinglist;
     
 
     
@@ -67,25 +67,25 @@ public class RestaurantSenzu implements Serializable {
         this.restaurantName = restaurantName;
     }
     
-    public void setRatings(Integer ratings)  {
-        this.ratings=ratings;
+    public void setRating(String rating)  {
+        this.rating=rating;
     }
     
-    public void setRatinglist (ArrayList<Integer> ratinglist){
-        this.ratinglist=ratinglist;
-    }
+//    public void setRatinglist (ArrayList<Integer> ratinglist){
+//        this.ratinglist=ratinglist;
+//    }
     
 
-    public String getOwnerName() {
-        return owner;
+    public String getRestaurantOwner() {
+        return restaurantOwner;
     }
     
     public String getAddress() {
         return address;
     }
     
-    public String getDatetime() {
-        return datetime;
+    public String getOpeningHours() {
+        return openingHours;
     }
     
     public String getPrice() {
@@ -104,15 +104,19 @@ public class RestaurantSenzu implements Serializable {
         return menu;
     }
     
-    public String getSpecialdiet() {
+    public ArrayList<String> getSpecialdiet() {
         return specialdiet;
     }
     
-    public Integer getRatings() {
-        return ratings;
+    public void setSpecialdiet(ArrayList<String> specialdiet) {
+        this.specialdiet = specialdiet;
     }
     
-    public ArrayList<Integer> getRatinglist() {
-        return ratinglist;
+    public String getRating() {
+        return rating;
     }
+    
+//    public ArrayList<Integer> getRatinglist() {
+//        return ratinglist;
+//    }
 }

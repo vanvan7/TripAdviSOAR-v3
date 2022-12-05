@@ -7,6 +7,7 @@ package Models;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.ArrayList;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -79,7 +80,7 @@ public class Restaurants implements Serializable {
     private String menu;
     @Size(max = 255)
     @Column(name = "SPECIALDIET")
-    private String specialdiet;
+    private ArrayList<String> specialdiet;
     @Size(max = 10)
     @Column(name = "RATING")
     private String rating;
@@ -236,11 +237,11 @@ public class Restaurants implements Serializable {
         this.menu = menu;
     }
 
-    public String getSpecialdiet() {
+    public ArrayList<String> getSpecialdiet() {
         return specialdiet;
     }
 
-    public void setSpecialdiet(String specialdiet) {
+    public void setSpecialdiet(ArrayList<String> specialdiet) {
         this.specialdiet = specialdiet;
     }
 

@@ -123,11 +123,11 @@
             <br/>
             <p:growl id="messages" showDetail="true"/>
             <h3 class="mt-0" style="width:100%; font_size:30px; color: whitesmoke;font: bold;">Rate the Restaurant from 1 to 5 !</h3>
-            <p:rating value="#{restaurantSenzu.ratings}" style="width:100%;margin:x_auto">
-                <!--<p:ajax event="rate" listener ="#{restaurantSenzu.ratings}" update="messages"/> -->
+            <p:rating value="#{restaurantSenzu.rating}" style="width:100%;margin:x_auto">
+                <!--<p:ajax event="rate" listener ="#{restaurantSenzu.rating}" update="messages"/> -->
             </p:rating>
             <br/>
-            <p:commandButton value="Submit" action="#{loginSenzu.currentRestaurant.setRatings(restaurantSenzu.ratings)}"/>
+            <p:commandButton value="Submit" action="#{loginSenzu.currentRestaurant.setRating(restaurantSenzu.rating)}"/>
             <p:spacer />
             <br/>
         </h3>

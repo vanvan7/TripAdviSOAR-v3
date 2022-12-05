@@ -14,7 +14,9 @@ import java.util.Arrays;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -36,27 +38,38 @@ public class RestaurantUserSenzu implements Serializable {
     private String password = "";
     private String email = "";
     private String restaurantName = "";
-    private String owner = "";
+    private String restaurantOwner = "";
     private String address = "";
-    private String datetime = "";
+    private String openingHours = "";
     private String price = "";
     private String cookingtype = "";
     private String contact = "";
     private String dish = "";
-    //----------------------------------------------------added
-    private ArrayList<String> menu;
+    private String menu;
     private ArrayList<String> specialdiet;
-    //-----------------------------------------------------added
     @Transactional
     public String createARestaurantUser() {
         try {
             if (!emailExists() && !usernameExists()) {
                 Users newUser = new Users();
+                Restaurants newRestaurant = new Restaurants();
                 newUser.setUsername(username);
                 newUser.setPassword(password.hashCode());
                 newUser.setEmail(email);
                 newUser.setRestaurantName(restaurantName);
+                newRestaurant.setUsername(username);
+                newRestaurant.setPassword(password.hashCode());
+                newRestaurant.setEmail(email);
+                newRestaurant.setRestaurantName(restaurantName);
+                newRestaurant.setRestaurantOwner(restaurantOwner);
+                newRestaurant.setAddress(address);
+                newRestaurant.setOpeningHours(openingHours);
+                newRestaurant.setPrice(price);
+                newRestaurant.setCookingtype(cookingtype);
+                newRestaurant.setContact(contact);
+                newRestaurant.setMenu(menu);                
                 em.persist(newUser);
+                em.persist(newRestaurant);
             } //add to mock databese if User created
             return "/MainPage/LoginPageRestaurant.xhtml?faces-redirect=true";
         } catch (AlreadyExistsException | DoesNotExistException ex) {
@@ -67,14 +80,14 @@ public class RestaurantUserSenzu implements Serializable {
         this.password = "";
         this.email = "";
         this.restaurantName = "";
-        this.owner = "";
+        this.restaurantOwner = "";
         this.address = "";
-        this.datetime = "";
+        this.openingHours = "";
         this.price = "";
         this.cookingtype = "";
         this.contact = "";
         this.dish = "";
-        this.menu = new ArrayList<>();
+        this.menu = "";
         this.specialdiet = new ArrayList<>();
         
         return "/MainPage/LoginPageRestaurant.xhtml?faces-redirect=true";
@@ -109,16 +122,16 @@ public class RestaurantUserSenzu implements Serializable {
         return username;
     }
 
-    public String getOwner() {
-        return owner;
+    public String getRestaurantOwner() {
+        return restaurantOwner;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public String getOpeningHours() {
+        return openingHours;
     }
 
     public String getPrice() {
@@ -137,15 +150,7 @@ public class RestaurantUserSenzu implements Serializable {
         return dish;
     }
   
-
-    //public static ArrayList<Menu> getMenu() {
-    //    return MockDatabase.getInstance().getMenu();
-    //}
-    //public static ArrayList<SpecialDiet> getSpecialdiet() {
-    //    return MockDatabase.getInstance().getSpecialdiet();
-    //}
-    //----------------------------------------------added => don't return error on NEtbeans
-    public ArrayList<String> getMenu() {
+    public String getMenu() {
         return menu;
     }
 
@@ -153,7 +158,6 @@ public class RestaurantUserSenzu implements Serializable {
         return specialdiet;
     }
 
-    //---------------------------------------------------added
     //SET
     public void setEmail(String email) {
         this.email = email;
@@ -171,16 +175,16 @@ public class RestaurantUserSenzu implements Serializable {
         this.username = username;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setRestaurantOwner(String restaurantOwner) {
+        this.restaurantOwner = restaurantOwner;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setOpeningHours(String openingHours) {
+        this.openingHours = openingHours;
     }
 
     public void setPrice(String price) {
@@ -197,10 +201,10 @@ public class RestaurantUserSenzu implements Serializable {
     
     public void setDish(String dish) {
         this.dish = dish;
-        setMenu(new ArrayList<String>(Arrays.asList(dish.split(", "))));
+        //setMenu(new ArrayList<String>(Arrays.asList(dish.split(", "))));
     }
 
-    public void setMenu(ArrayList<String> menu) {
+    public void setMenu(String menu) {
         this.menu = menu;
     }
 
@@ -208,5 +212,4 @@ public class RestaurantUserSenzu implements Serializable {
         this.specialdiet = specialdiet;
     }
 
-    //-----------------------------------------------------------------------added  
 }
