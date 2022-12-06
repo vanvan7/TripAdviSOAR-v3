@@ -58,6 +58,11 @@ public class RestaurantSenzu implements Serializable {
        
     }
     
+    public ArrayList<Restaurants> getRestaurants() {
+        Query query = em.createNamedQuery("Restaurants.findAll");
+        return new ArrayList<>(query.getResultList());
+    }
+    
     public String getRestaurantName() {
         return restaurantName;
         
