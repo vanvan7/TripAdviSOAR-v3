@@ -103,16 +103,16 @@
                 </tr>
                 <ui:repeat value="#{restaurantSenzu.restaurants}" var="item">                                                    
                     <tr>
-                        <td><h:outputText value="#{item.restaurantname}" /></td>
+                        <td><h:outputText value="#{item.restaurantName}" /></td>
                         <td><h:outputText value="#{item.address}" /></td>
-                        <td><h:outputText value="#{item.owner}" /></td>
-                        <td><h:outputText value="#{item.datetime}" /></td>
+                        <td><h:outputText value="#{item.restaurantOwner}" /></td>
+                        <td><h:outputText value="#{item.openingHours}" /></td>
                         <td><h:outputText value="#{item.price}" /></td>
                         <td><h:outputText value="#{item.cookingtype}" /></td>
                         <td><h:outputText value="#{item.contact}" /></td>
                         <td><h:outputText value="#{item.menu}" /></td>
-                        <td><h:outputText value="#{item.specialdiet}"  /></td>
-                        <td><h:outputText value="#{item.ratinglist}"  /></td>
+                        <td><h:outputText value="#{item.menu}" /></td>
+                        <td><h:outputText value="#{item.rating}"  /></td>
                     </tr>           
                 </ui:repeat>
             </table>
