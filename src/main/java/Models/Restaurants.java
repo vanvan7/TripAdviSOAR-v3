@@ -80,7 +80,7 @@ public class Restaurants implements Serializable {
     private String menu;
     @Size(max = 255)
     @Column(name = "SPECIALDIET")
-    private ArrayList<String> specialdiet;
+    private String specialdiet;
     @Size(max = 10)
     @Column(name = "RATING")
     private String rating;
@@ -237,11 +237,11 @@ public class Restaurants implements Serializable {
         this.menu = menu;
     }
 
-    public ArrayList<String> getSpecialdiet() {
+    public String getSpecialdiet() {
         return specialdiet;
     }
 
-    public void setSpecialdiet(ArrayList<String> specialdiet) {
+    public void setSpecialdiet(String specialdiet) {
         this.specialdiet = specialdiet;
     }
 
