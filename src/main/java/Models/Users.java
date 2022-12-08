@@ -7,6 +7,7 @@ package Models;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -67,7 +68,7 @@ public class Users implements Serializable {
         @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "RESTAURANT_ID", referencedColumnName = "RESTAURANT_ID")})
     @ManyToMany
-    private Collection<Restaurants> restaurantsCollection;
+    private List<Restaurants> restaurantsList;
 
     public Users() {
     }
@@ -137,12 +138,13 @@ public class Users implements Serializable {
         this.email = email;
     }
 
-    public Collection<Restaurants> getRestaurantsCollection() {
-        return restaurantsCollection;
+    @XmlTransient
+    public List<Restaurants> getRestaurantsList() {
+        return restaurantsList;
     }
 
-    public void setRestaurantsCollection(Collection<Restaurants> restaurantsCollection) {
-        this.restaurantsCollection = restaurantsCollection;
+    public void setRestaurantsList(List<Restaurants> restaurantsList) {
+        this.restaurantsList = restaurantsList;
     }
 
     @Override
@@ -173,7 +175,7 @@ public class Users implements Serializable {
             
             
 //            for (int r=0; r<MockDatabase.restaurants.size();r++){
-//                       if (restaurantname == MockDatabase.restaurants.get(r).getRestaurantname()){
+//                       if (restaurantName == MockDatabase.restaurants.get(r).getRestaurantName()){
 //                           S = S + MockDatabase.restaurants.get(r).toString();
 //                       }                      
 //            }              

@@ -125,7 +125,7 @@
                 <!--<p:ajax event="rate" listener ="#{restaurantSenzu.rating}" update="messages"/> -->
             </p:rating>
             <br/>
-            <p:commandButton value="Submit" action="#{loginSenzu.currentRestaurant.setRating(restaurantSenzu.rating)}"/>
+            <p:commandButton value="Submit" action="#{restaurantSenzu.addRating()}"/>
             <p:spacer />
             <br/>
         </h3>

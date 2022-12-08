@@ -7,6 +7,7 @@ package Beans;
 
 import Exceptions.DoesNotExistException;
 import Models.Restaurants;
+import Beans.LoginSenzu;
 import java.util.ArrayList;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -37,7 +38,7 @@ public class RestaurantSenzu implements Serializable {
     private String cookingtype = "";
     private String contact = "";
     private String menu = "";
-    private String rating;
+    private String rating = "";
     private ArrayList<String> specialdiet;
     //private ArrayList<Integer> ratinglist;
     
@@ -50,6 +51,18 @@ public class RestaurantSenzu implements Serializable {
             return users.get(0);
         }
         throw new DoesNotExistException("The user " + restaurantName + " does not exist.");
+    }
+    
+    @Transactional
+    public void addRating(){
+        Restaurants restaurants = LoginSenzu.getRestaurantLogged();
+        if (restaurants.getRating()== null){
+            restaurants.setRating(rating);
+        }
+        else{
+            restaurants.setRating(restaurants.getRating()+", "+rating);
+        }
+        em.merge(restaurants);
     }
     
     public List<Restaurants> getRestaurant() {
@@ -120,8 +133,7 @@ public class RestaurantSenzu implements Serializable {
     public String getRating() {
         return rating;
     }
+
+
     
-//    public ArrayList<Integer> getRatinglist() {
-//        return ratinglist;
-//    }
 }

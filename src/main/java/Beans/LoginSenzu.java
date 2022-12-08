@@ -8,10 +8,13 @@ package Beans;
 import Exceptions.DoesNotExistException;
 import Models.Restaurants;
 import Models.Users;
+import Beans.RestaurantSenzu;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -31,7 +34,8 @@ public class LoginSenzu implements Serializable {
     private String password = "";
     private String restaurantName = "";
     private Users currentUser;
-    private Restaurants currentRestaurant;
+    private static Restaurants currentRestaurant;
+    private String rating = "";
 
     public String userLogsIn() {
         try {
@@ -59,7 +63,7 @@ public class LoginSenzu implements Serializable {
             Restaurants restaurant = findByRestaurantName();
             if (restaurant != null){
                 currentRestaurant = restaurant;
-                System.out.println(this.getCurrentRestaurant().toString());
+                //System.out.println(this.getCurrentRestaurant().toString());
         
             }
         } catch (DoesNotExistException ex) {
@@ -105,6 +109,10 @@ public class LoginSenzu implements Serializable {
     public Restaurants getCurrentRestaurant(){
         return currentRestaurant;
     }
+    
+    public static Restaurants getRestaurantLogged(){
+        return currentRestaurant;
+    }
 
     public String getPassword() {
         return password;
@@ -136,5 +144,18 @@ public class LoginSenzu implements Serializable {
     public void setRestaurantName(String restaurantName){
         this.restaurantName = restaurantName;
     }
+     
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+   
     
+//    public void update(Restaurants restaurants) {
+//        em.merge(restaurants);
+//    }
 }
+    

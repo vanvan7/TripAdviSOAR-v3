@@ -8,6 +8,8 @@ package Models;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.List;
+import Beans.RestaurantSenzu;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -81,7 +83,7 @@ public class Restaurants implements Serializable {
     @Size(max = 255)
     @Column(name = "SPECIALDIET")
     private String specialdiet;
-    @Size(max = 10)
+    @Size(max = 255)
     @Column(name = "RATING")
     private String rating;
     private static final long serialVersionUID = 1L;
@@ -92,8 +94,8 @@ public class Restaurants implements Serializable {
     private Integer restaurantId;
     @Column(name = "PASSWORD")
     private Integer password;
-    @ManyToMany(mappedBy = "restaurantsCollection")
-    private Collection<Users> usersCollection;
+    @ManyToMany(mappedBy = "restaurantsList")
+    private List<Users> usersList;
 
     public Restaurants() {
     }
@@ -146,12 +148,13 @@ public class Restaurants implements Serializable {
         this.password = password;
     }
 
-    public Collection<Users> getUsersCollection() {
-        return usersCollection;
+    @XmlTransient
+    public List<Users> getUsersList() {
+        return usersList;
     }
 
-    public void setUsersCollection(Collection<Users> usersCollection) {
-        this.usersCollection = usersCollection;
+     public void setUsersList(List<Users> usersList) {
+        this.usersList = usersList;
     }
 
     @Override
@@ -251,6 +254,7 @@ public class Restaurants implements Serializable {
 
     public void setRating(String rating) {
         this.rating = rating;
+        
     }
     
 }
