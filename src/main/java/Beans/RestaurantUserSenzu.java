@@ -46,7 +46,8 @@ public class RestaurantUserSenzu implements Serializable {
     private String contact = "";
     private String dish = "";
     private String menu;
-    private ArrayList<String> specialdiet;
+    private String specialdiet;
+    private ArrayList<String> specialdietlist;
     @Transactional
     public String createARestaurantUser() {
         try {
@@ -67,7 +68,8 @@ public class RestaurantUserSenzu implements Serializable {
                 newRestaurant.setPrice(price);
                 newRestaurant.setCookingtype(cookingtype);
                 newRestaurant.setContact(contact);
-                newRestaurant.setMenu(menu);                
+                newRestaurant.setMenu(menu);  
+                newRestaurant.setSpecialdiet(specialdiet);
                 em.persist(newUser);
                 em.persist(newRestaurant);
             } //add to mock databese if User created
@@ -88,7 +90,7 @@ public class RestaurantUserSenzu implements Serializable {
         this.contact = "";
         this.dish = "";
         this.menu = "";
-        this.specialdiet = new ArrayList<>();
+        this.specialdiet = "";
         
         return "/MainPage/LoginPageRestaurant.xhtml?faces-redirect=true";
     }
@@ -154,10 +156,14 @@ public class RestaurantUserSenzu implements Serializable {
         return menu;
     }
 
-    public ArrayList<String> getSpecialdiet() {
+    public String getSpecialdiet() {
         return specialdiet;
     }
 
+    public ArrayList<String> getSpecialdietlist() {
+       return specialdietlist;
+    }
+    
     //SET
     public void setEmail(String email) {
         this.email = email;
@@ -208,8 +214,14 @@ public class RestaurantUserSenzu implements Serializable {
         this.menu = menu;
     }
 
-    public void setSpecialdiet(ArrayList<String> specialdiet) {
+    public void setSpecialdiet(String specialdiet) {
         this.specialdiet = specialdiet;
+    }
+    
+    public void setSpecialdietlist(ArrayList<String> specialdietlist) {
+        this.specialdietlist = specialdietlist;
+        this.specialdiet = specialdietlist.toString().substring(1,specialdietlist.toString().length()-1);
+        
     }
 
 }
