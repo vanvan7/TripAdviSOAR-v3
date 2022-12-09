@@ -108,7 +108,7 @@
                 <h:outputText value="Email"/>
                 <h:inputText value="#{userSenzu.email}" />
                 <h:outputText value="Password"/>
-                <h:inputSecret value="#{userSenzu.password}" />
+                <h:inputSecret value="#{userSenzu.password}" redisplay ="true" />
                 </h:panelGrid>
                 <br/>
                 <h:commandButton value="Create a User" action="#{userSenzu.createAUser()}" />                 
