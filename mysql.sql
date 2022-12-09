@@ -51,7 +51,3 @@ INSERT INTO USERS (USERNAME, RESTAURANT_NAME, EMAIL, PASSWORD) VALUES ("japanese
 INSERT INTO USERS (USERNAME, RESTAURANT_NAME, EMAIL, PASSWORD) VALUES ("korean1", "The spicy House", "korean@gmail.com", "1234");
 
 
---   Adding foods to FOODS--
-INSERT INTO FOODS (FOOD_NAME, FOOD_PRICE, INGREDIENTS) VALUES ('Pasta', 15.0, 'spaghetti, pesto sauce, parmigiano');
-INSERT INTO FOODS (FOOD_NAME, FOOD_PRICE, INGREDIENTS) VALUES ('Pizza', 12.0,  'dough, tomato sauce, mozarella');
-INSERT INTO FOODS (FOOD_NAME, FOOD_PRICE, INGREDIENTS) VALUES ('Chicken Curry', 18.0, 'chicken, curry sauce');
