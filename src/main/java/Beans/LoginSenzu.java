@@ -42,7 +42,12 @@ public class LoginSenzu implements Serializable {
             Users user = findByUsername();
             if (user != null && user.isPasswordCorrect(password)) {
                 currentUser = user;
-                return "/UserPage/UserMainPage.xhtml?faces-redirect=true";
+                if (currentUser.getFirstName().length() < 1){
+                    return "/MainPage/LoginPage.xhtml?faces-redirect=true";
+                }
+                else {
+                    return "/UserPage/UserMainPage.xhtml?faces-redirect=true";
+                }
             }             
         } catch (DoesNotExistException ex) {
             System.out.println(ex.getMessage());
